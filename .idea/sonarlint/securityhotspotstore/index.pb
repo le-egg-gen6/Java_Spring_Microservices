@@ -45,3 +45,5 @@ L
 notification-service/HELP.md,3\8\38786e46e9363d4ae977afb28f21e06ce18270ef
 L
 notification-service/pom.xml,0\1\01f9e880c9ba9f01d23d7605950269a1f1661129
+I
+prometheus/prometheus.yml,2\1\2195c72987a6b3f2c1afeaf7568ad8d407cc8eb8
