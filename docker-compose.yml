@@ -4,7 +4,8 @@ services:
   ##Postgres Order
   postgres-order:
     container_name: postgres-order
-    image: postgres
+    image: postgres:15-alpine
+    restart: unless-stopped
     environment:
       POSTGRES_DB: order-service
       POSTGRES_USER: nguyenle
@@ -17,12 +18,12 @@ services:
     ports:
       - "5431:5431"
     command: -p 5431
-    restart: unless-stopped
 
   ##Postgres Inventory
   postgres-inventory:
     container_name: postgres-inventory
-    image: postgres
+    image: postgres:15-alpine
+    restart: unless-stopped
     environment:
       POSTGRES_DB: inventory-service
       POSTGRES_USER: nguyenle
@@ -35,5 +36,34 @@ services:
     ports:
       - "5432:5432"
     command: -p 5432
-    restart: unless-stopped
 
+  ##Prometheus
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:v2.37.1
+    restart: unless-stopped
+    expose:
+      - "9090"
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      -
+
+  ##Grafana
+  grafana:
+    container_name: grafana
+    image: grafana/grafana-oss:8.5.2
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=nguyenle
+      - GF_SECURITY_ADMIN_PASSWORD=NgocLe*2004
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+    links:
+      - prometheus:prometheus
+    volumes:
+      - ./grafana:/var/lib/grafana
