@@ -41,3 +41,7 @@ Yproduct-service/src/main/java/com/myproject/productservice/ProductServiceApplic
 Yorder-service/src/main/java/com/myproject/orderservice/service/impl/OrderServiceImpl.java,a\0\a0e86cf2f52d75dc9d45250d6c4f0209bfa4a352
 B
 docker-compose.yml,3\5\35b8c13cf2eb2a194eada000eb310d65aed53b2a
+L
+notification-service/HELP.md,3\8\38786e46e9363d4ae977afb28f21e06ce18270ef
+L
+notification-service/pom.xml,0\1\01f9e880c9ba9f01d23d7605950269a1f1661129
