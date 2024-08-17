@@ -1,11 +1,7 @@
 package com.myproject.userservice.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,10 +23,13 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private Long id;
 
+	@Column(name = "email", unique = true, columnDefinition = "VARCHAR(255) COLLATE utf8mb4_unicode_ci")
 	private String email;
 
-	private String name;
+	@Column(name = "email_verified", nullable = false, columnDefinition = "boolean default false")
+	private boolean emailVerified;
 
+	@Column(name = "username", unique = true, columnDefinition = "VARCHAR(255) COLLATE utf8mb4_unicode_ci")
 	private String username;
 
 	private String password;
