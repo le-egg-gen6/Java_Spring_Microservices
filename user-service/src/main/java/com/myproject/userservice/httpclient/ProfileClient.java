@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(
         name = "profile-service",
         url = "${app.services.profile}",
-        configuration = {AuthenticationRequestInterceptor.class}
+        configuration = { AuthenticationRequestInterceptor.class }
 )
 public interface ProfileClient {
 

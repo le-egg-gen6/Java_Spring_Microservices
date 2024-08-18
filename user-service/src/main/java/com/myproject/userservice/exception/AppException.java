@@ -1,5 +1,6 @@
 package com.myproject.userservice.exception;
 
+import com.myproject.userservice.constant.ErrorCode;
 import lombok.Getter;
 import lombok.Setter;
 

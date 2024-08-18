@@ -1,4 +1,4 @@
-package com.myproject.userservice.exception;
+package com.myproject.userservice.constant;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

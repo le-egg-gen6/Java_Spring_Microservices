@@ -1,7 +1,7 @@
 package com.myproject.userservice.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.myproject.userservice.exception.ErrorCode;
+import com.myproject.userservice.constant.ErrorCode;
 import com.myproject.userservice.payload.response.ApiResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
