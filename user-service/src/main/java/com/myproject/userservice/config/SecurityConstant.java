@@ -15,6 +15,9 @@ public class SecurityConstant {
 	@Value("${jwt.access.expiry-hour}")
 	private Long JWT_EXPIRE_TIME;
 
+	@Value("jwt.refresh.expiry-hour")
+	private Long JWT_REFRESHABLE_TIME;
+
 	private String[] PUBLIC_ENDPOINT = {
 		"/users/registration",
 		"/auth/token",
@@ -29,6 +32,10 @@ public class SecurityConstant {
 
 	public Long getExpireTimeInHour() {
 		return JWT_EXPIRE_TIME;
+	}
+
+	public Long getRefreshableTimeInhour() {
+		return JWT_REFRESHABLE_TIME;
 	}
 
 	public String[] getPublicEndpoints() {

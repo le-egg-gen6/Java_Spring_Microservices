@@ -3,6 +3,10 @@ package com.myproject.userservice.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.myproject.userservice.repository.RoleRepository;
 import com.myproject.userservice.repository.UserRepository;
+import com.nimbusds.jose.JOSEException;
+import com.nimbusds.jose.KeyLengthException;
+import com.nimbusds.jose.crypto.MACSigner;
+import com.nimbusds.jose.crypto.MACVerifier;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +20,8 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtGra
  */
 @Configuration
 public class ApplicationConfig {
+
+	private SecurityConstant securityConstant;
 
 	@Bean
 	public PasswordEncoder initPasswordEncode() {
@@ -36,6 +42,16 @@ public class ApplicationConfig {
 	@Bean
 	public ObjectMapper initObjectMapper() {
 		return new ObjectMapper();
+	}
+
+	@Bean
+	public MACSigner initMACSigner() throws KeyLengthException {
+		return new MACSigner(securityConstant.getSecretKey().getBytes());
+	}
+
+	@Bean
+	public MACVerifier initMACVerifier() throws JOSEException {
+		return new MACVerifier(securityConstant.getSecretKey().getBytes());
 	}
 
 //	@Bean
