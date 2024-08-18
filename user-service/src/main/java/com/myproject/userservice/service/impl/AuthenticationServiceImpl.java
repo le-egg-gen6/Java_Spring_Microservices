@@ -1,6 +1,6 @@
 package com.myproject.userservice.service.impl;
 
-import com.myproject.userservice.config.SecurityConstant;
+import com.myproject.userservice.constant.SecurityConstant;
 import com.myproject.userservice.exception.AppException;
 import com.myproject.userservice.constant.ErrorCode;
 import com.myproject.userservice.model.InvalidatedToken;

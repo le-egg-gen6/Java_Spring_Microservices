@@ -20,25 +20,22 @@ public class RoleController {
 
     @PostMapping("/create")
     public ApiResponse<?> create(@RequestBody RoleRequest request) {
-
+        return ApiResponse.builder()
+                .result(roleService.create(request))
+                .build();
     }
 
     @GetMapping
     public ApiResponse<?> getAll() {
-
-    }
-
-    @PostMapping("/update")
-    public ApiResponse<?> update(
-            @RequestParam String role,
-            @RequestBody RoleRequest request
-    ) {
-
+        return ApiResponse.builder()
+                .result(roleService.getAll())
+                .build();
     }
 
     @DeleteMapping("/delete")
     public ApiResponse<?> delete(@RequestParam String role) {
-
+        roleService.delete(role);
+        return ApiResponse.<Void>builder().build();
     }
 
 }

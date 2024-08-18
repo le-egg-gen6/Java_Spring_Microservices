@@ -1,4 +1,4 @@
-package com.myproject.userservice.config;
+package com.myproject.userservice.constant;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ public class SecurityConstant {
 	@Value("${jwt.access.expiry-hour}")
 	private Long JWT_EXPIRE_TIME;
 
-	@Value("jwt.refresh.expiry-hour")
+	@Value("${jwt.refresh.expiry-hour}")
 	private Long JWT_REFRESHABLE_TIME;
 
 	private String[] PUBLIC_ENDPOINT = {

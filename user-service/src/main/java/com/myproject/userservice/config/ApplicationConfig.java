@@ -1,13 +1,11 @@
 package com.myproject.userservice.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.myproject.userservice.repository.RoleRepository;
-import com.myproject.userservice.repository.UserRepository;
+import com.myproject.userservice.constant.SecurityConstant;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.KeyLengthException;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.MACVerifier;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
