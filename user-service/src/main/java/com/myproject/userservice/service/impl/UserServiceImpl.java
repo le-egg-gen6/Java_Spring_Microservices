@@ -3,7 +3,7 @@ package com.myproject.userservice.service.impl;
 import com.myproject.userservice.constant.ErrorCode;
 import com.myproject.userservice.constant.PredefinedRole;
 import com.myproject.userservice.exception.AppException;
-import com.myproject.userservice.httpclient.ProfileClient;
+import com.myproject.userservice.httpclient.ProfileServiceClient;
 import com.myproject.userservice.kafka.event.NotificationEvent;
 import com.myproject.userservice.mapper.ProfileMapper;
 import com.myproject.userservice.mapper.UserMapper;
@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
 	private final ProfileMapper profileMapper;
 
-	private final ProfileClient profileClient;
+	private final ProfileServiceClient profileServiceClient;
 
 	private final PasswordEncoder passwordEncoder;
 
@@ -104,7 +104,7 @@ public class UserServiceImpl implements UserService {
 		ProfileCreateRequest profileCreateRequest = profileMapper.toProfileProfileCreateRequest(request);
 		profileCreateRequest.setUserId(user.getId());
 
-		var response = profileClient.createProfile(profileCreateRequest);
+		var response = profileServiceClient.createProfile(profileCreateRequest);
 
 		addAsyncOperation(() -> {
 			NotificationEvent notificationEvent = NotificationEvent.builder()

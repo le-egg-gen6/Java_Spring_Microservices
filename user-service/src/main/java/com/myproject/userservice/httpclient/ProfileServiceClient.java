@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
         url = "${app.services.profile}",
         configuration = { AuthenticationRequestInterceptor.class }
 )
-public interface ProfileClient {
+public interface ProfileServiceClient {
 
     @PostMapping(value = "/internal/user", produces = MediaType.APPLICATION_JSON_VALUE)
     ApiResponse<UserProfileResponse> createProfile(@RequestBody ProfileCreateRequest request);
