@@ -1,0 +1,5 @@
+
+s	java:S116"YRename this field "JWT_SECRET_KEY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(å™‰¤úÿÿÿÿ
+o	java:S116"ZRename this field "JWT_EXPIRE_TIME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÏŠ¿²
+y	java:S116"_Rename this field "JWT_REFRESHABLE_TIME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÈâÂùÿÿÿÿ
+o	java:S116"ZRename this field "PUBLIC_ENDPOINT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®ÆÑ¸
