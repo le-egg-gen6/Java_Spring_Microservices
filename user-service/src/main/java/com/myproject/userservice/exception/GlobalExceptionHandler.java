@@ -1,7 +1,7 @@
 package com.myproject.userservice.exception;
 
 import com.myproject.userservice.constant.ErrorCode;
-import com.myproject.userservice.payload.response.ApiResponse;
+import com.myproject.userservice.payload.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

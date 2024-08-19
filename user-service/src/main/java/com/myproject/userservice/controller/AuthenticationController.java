@@ -4,7 +4,7 @@ import com.myproject.userservice.payload.request.AuthenticationRequest;
 import com.myproject.userservice.payload.request.IntrospectRequest;
 import com.myproject.userservice.payload.request.LogoutRequest;
 import com.myproject.userservice.payload.request.RefreshRequest;
-import com.myproject.userservice.payload.response.ApiResponse;
+import com.myproject.userservice.payload.ApiResponse;
 import com.myproject.userservice.payload.response.AuthenticationResponse;
 import com.myproject.userservice.payload.response.IntrospectResponse;
 import com.myproject.userservice.service.AuthenticationService;
@@ -22,7 +22,7 @@ import java.text.ParseException;
  * @author nguyenle
  */
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 @Slf4j
 public class AuthenticationController {

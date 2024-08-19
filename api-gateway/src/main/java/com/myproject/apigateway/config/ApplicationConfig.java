@@ -14,8 +14,15 @@ public class ApplicationConfig {
 	@Value("${api.prefix}")
 	private String apiPrefix;
 
+	@Value("${app.services.user}")
+	private String appServiceUserUrl;
+
 	public String getApiPrefix() {
 		return apiPrefix;
+	}
+
+	public String getAppServiceUserUrl() {
+		return appServiceUserUrl;
 	}
 
 	@Bean

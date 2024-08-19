@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 public class SecurityConstant {
 
 	private String[] PUBLIC_ENDPOINTS = {
-		"/identity/auth/.*",
-		"/identity/users/registration",
+		"/user/auth/.*",
+		"/user/user/registration",
 	};
 
 	public String[] getPublicEndpoints() {

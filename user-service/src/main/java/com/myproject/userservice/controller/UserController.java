@@ -2,7 +2,7 @@ package com.myproject.userservice.controller;
 
 import com.myproject.userservice.payload.request.UserCreateRequest;
 import com.myproject.userservice.payload.request.UserUpdateRequest;
-import com.myproject.userservice.payload.response.ApiResponse;
+import com.myproject.userservice.payload.ApiResponse;
 import com.myproject.userservice.payload.response.UserResponse;
 import com.myproject.userservice.service.UserService;
 import jakarta.validation.Valid;
@@ -16,7 +16,7 @@ import java.util.List;
  * @author nguyenle
  */
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 @RequiredArgsConstructor
 @Slf4j
 public class UserController {

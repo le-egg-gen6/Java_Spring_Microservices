@@ -3,10 +3,11 @@ package com.myproject.apigateway.config;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.myproject.apigateway.constant.SecurityConstant;
-import com.myproject.apigateway.httpclient.UserServiceClient;
 import com.myproject.apigateway.payload.response.ApiResponse;
 import java.util.Arrays;
 import java.util.List;
+
+import com.myproject.apigateway.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -33,7 +34,7 @@ public class AuthenticationFilter implements GlobalFilter {
 
 	private final ObjectMapper objectMapper;
 
-	private final UserServiceClient userServiceClient;
+	private final UserService userService;
 
 	private final ApplicationConfig applicationConfig;
 
@@ -44,22 +45,24 @@ public class AuthenticationFilter implements GlobalFilter {
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 		log.info("Enter authentication filter....");
 
-		if (isPublicEndpoint(exchange.getRequest()))
+		if (isPublicEndpoint(exchange.getRequest())) {
 			return chain.filter(exchange);
+		}
 
 		// Get token from authorization header
 		List<String> authHeader = exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION);
-		if (CollectionUtils.isEmpty(authHeader))
+		if (CollectionUtils.isEmpty(authHeader)) {
 			return unauthenticated(exchange.getResponse());
-
+		}
 		String token = authHeader.get(0).replace("Bearer ", "");
 		log.info("Token: {}", token);
 
-		return userServiceClient.introspect(token).flatMap(introspectResponse -> {
-			if (introspectResponse.getResult().isValid())
+		return userService.introspect(token).flatMap(introspectResponse -> {
+			if (introspectResponse.getResult().isValid()) {
 				return chain.filter(exchange);
-			else
+			} else {
 				return unauthenticated(exchange.getResponse());
+			}
 		}).onErrorResume(throwable -> unauthenticated(exchange.getResponse()));
 	}
 

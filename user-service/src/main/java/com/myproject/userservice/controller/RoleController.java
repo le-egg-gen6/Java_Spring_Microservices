@@ -1,7 +1,7 @@
 package com.myproject.userservice.controller;
 
 import com.myproject.userservice.payload.request.RoleRequest;
-import com.myproject.userservice.payload.response.ApiResponse;
+import com.myproject.userservice.payload.ApiResponse;
 import com.myproject.userservice.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

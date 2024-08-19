@@ -1,6 +1,9 @@
 package com.myproject.apigateway.config;
 
 import java.util.List;
+
+import com.myproject.apigateway.httpclient.UserServiceClient;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -14,11 +17,15 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
  * @author nguyenle
  */
 @Configuration
+@RequiredArgsConstructor
 public class WebClientConfig {
+
+	private final ApplicationConfig applicationConfig;
+
 	@Bean
 	WebClient webClient(){
 		return WebClient.builder()
-			.baseUrl("http://localhost:8080/identity")
+			.baseUrl(applicationConfig.getAppServiceUserUrl())
 			.build();
 	}
 
@@ -36,11 +43,11 @@ public class WebClientConfig {
 	}
 
 	@Bean
-	IdentityClient identityClient(WebClient webClient){
+	UserServiceClient identityClient(WebClient webClient){
 		HttpServiceProxyFactory httpServiceProxyFactory = HttpServiceProxyFactory
 			.builderFor(WebClientAdapter.create(webClient)).build();
 
-		return httpServiceProxyFactory.createClient(IdentityClient.class);
+		return httpServiceProxyFactory.createClient(UserServiceClient.class);
 	}
 
 }
