@@ -4,11 +4,11 @@ import com.myproject.profileservice.constant.SecurityConstant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @author nguyenle
@@ -16,6 +16,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final InternalApiKeyFilter internalApiKeyFilter;
 
     private final SecurityConstant securityConstant;
 
@@ -31,7 +33,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         request -> request
-                                .requestMatchers(HttpMethod.POST, securityConstant.getPublicEndpoints()).permitAll()
+                                .requestMatchers(securityConstant.getPublicEndpoints()).permitAll()
+                                .requestMatchers(securityConstant.getInternalEndpoints()).permitAll()
                                 .anyRequest().authenticated()
                 );
 
@@ -41,6 +44,8 @@ public class SecurityConfig {
                         .jwtAuthenticationConverter(jwtAuthenticationConverter)
                 ).authenticationEntryPoint(jwtAuthenticationEntryPoint)
         );
+
+        httpSecurity.addFilterBefore(internalApiKeyFilter, UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();
     }

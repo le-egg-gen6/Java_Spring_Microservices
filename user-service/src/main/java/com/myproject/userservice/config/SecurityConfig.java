@@ -22,33 +22,33 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-	private final SecurityConstant securityConstant;
+    private final SecurityConstant securityConstant;
 
-	private final CustomJwtDecoder customJwtDecoder;
+    private final CustomJwtDecoder customJwtDecoder;
 
-	private final JwtAuthenticationConverter jwtAuthenticationConverter;
+    private final JwtAuthenticationConverter jwtAuthenticationConverter;
 
-	private final AuthenticationEntryPoint authenticationEntryPoint;
+    private final AuthenticationEntryPoint authenticationEntryPoint;
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity
-			.csrf(AbstractHttpConfigurer::disable)
-			.authorizeHttpRequests(
-				request -> request
-					.requestMatchers(HttpMethod.POST, securityConstant.getPublicEndpoints()).permitAll()
-					.anyRequest().authenticated()
-			);
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(
+                        request -> request
+                                .requestMatchers(HttpMethod.POST, securityConstant.getPublicEndpoints()).permitAll()
+                                .anyRequest().authenticated()
+                );
 
-		httpSecurity
-			.oauth2ResourceServer(oauth2 -> oauth2
-				.jwt(jwtConfigurer -> jwtConfigurer
-					.decoder(customJwtDecoder)
-					.jwtAuthenticationConverter(jwtAuthenticationConverter)
-				).authenticationEntryPoint(authenticationEntryPoint)
-			);
+        httpSecurity
+                .oauth2ResourceServer(oauth2 -> oauth2
+                        .jwt(jwtConfigurer -> jwtConfigurer
+                                .decoder(customJwtDecoder)
+                                .jwtAuthenticationConverter(jwtAuthenticationConverter)
+                        ).authenticationEntryPoint(authenticationEntryPoint)
+                );
 
-		return httpSecurity.build();
-	}
+        return httpSecurity.build();
+    }
 
 }

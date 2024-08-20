@@ -26,6 +26,9 @@ public class SecurityConstant {
 		"/auth/refresh"
 	};
 
+	@Value("${api.key}")
+	private String INTERNAL_API_KEY;
+
 	public String getSecretKey() {
 		return JWT_SECRET_KEY;
 	}
@@ -34,12 +37,16 @@ public class SecurityConstant {
 		return JWT_EXPIRE_TIME;
 	}
 
-	public Long getRefreshableTimeInhour() {
+	public Long getRefreshableTimeInHour() {
 		return JWT_REFRESHABLE_TIME;
 	}
 
 	public String[] getPublicEndpoints() {
 		return PUBLIC_ENDPOINT;
+	}
+
+	public String getInternalApiKey() {
+		return INTERNAL_API_KEY;
 	}
 
 }

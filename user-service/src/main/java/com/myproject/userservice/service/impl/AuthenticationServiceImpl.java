@@ -96,7 +96,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         SignedJWT signedJWT = SignedJWT.parse(token);
         Date expiryTime = (isRefresh)
                 ? new Date(signedJWT.getJWTClaimsSet().getIssueTime()
-                .toInstant().plus(securityConstant.getRefreshableTimeInhour(), ChronoUnit.HOURS).toEpochMilli())
+                .toInstant().plus(securityConstant.getRefreshableTimeInHour(), ChronoUnit.HOURS).toEpochMilli())
                 : signedJWT.getJWTClaimsSet().getExpirationTime();
 
         var verified = signedJWT.verify(macVerifier);
